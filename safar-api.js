@@ -1,9 +1,9 @@
-/* SAFAR API client. Include with <script src="/safar-api.js"></script>, then use window.SafarAPI.
+﻿/* SAFAR API client. Include with <script src="/safar-api.js"></script>, then use window.SafarAPI.
  * Every method returns a promise that resolves to the parsed JSON, or rejects with an Error that has
  * .status (HTTP code) and .details (per-field messages on 422). The token is kept in localStorage. */
 (function (root) {
   const TOKEN_KEY = "safar-token";
-  let base = ""; // set with SafarAPI.configure({ baseUrl: "https://api.example.com" }) if hosted elsewhere
+  let base = "https://safar-backend-demo.onrender.com"; // set with SafarAPI.configure({ baseUrl: "https://api.example.com" }) if hosted elsewhere
   const store = {
     get() { try { return root.localStorage.getItem(TOKEN_KEY); } catch { return null; } },
     set(t) { try { t ? root.localStorage.setItem(TOKEN_KEY, t) : root.localStorage.removeItem(TOKEN_KEY); } catch {} },
@@ -95,3 +95,4 @@
     respond: (threadId, messageId, action, slot) => call("POST", `/threads/${threadId}/messages/${messageId}/respond`, { action, slot }),
   };
 })(typeof window !== "undefined" ? window : globalThis);
+
