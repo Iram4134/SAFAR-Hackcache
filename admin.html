@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -35,8 +35,8 @@
 </style>
 </head>
 <body>
-<div class="wrap" id="root"><p class="muted">Loading…</p></div>
-<script src="/safar-api.js"></script>
+<div class="wrap" id="root"><p class="muted">Loadingâ€¦</p></div>
+<script src="./safar-api.js"></script>
 <script>
 (function () {
   "use strict";
@@ -92,15 +92,15 @@
     else if (st.tab === "jobs") { head = ["Title", "Employer", "Where", "Applicants", "Status", "Posted", ""]; row = (j) => [esc(j.title), esc(j.employer), esc(j.location), j.applicants, '<span class="pill ' + j.status + '">' + j.status + "</span>", date(j.postedAt), '<button class="small" data-act="job-toggle" data-id="' + j.id + '" data-status="' + (j.status === "open" ? "closed" : "open") + '">' + (j.status === "open" ? "Close" : "Reopen") + '</button> <button class="small danger" data-act="job-delete" data-id="' + j.id + '" data-title="' + esc(j.title) + '">Delete</button>']; }
     else { head = ["Student", "Job", "Employer", "Status", "Applied", "Updated"]; row = (a) => [esc(a.studentName), esc(a.jobTitle), esc(a.employer), '<span class="pill ' + a.status + '">' + a.status + "</span>", date(a.at), date(a.updatedAt)]; }
     const total = L.total, from = total ? st.offset + 1 : 0, to = Math.min(st.offset + PAGE, total);
-    return '<div class="scroll"><table><tr>' + head.map((h) => "<th>" + h + "</th>").join("") + "</tr>" + (rows.map((r) => "<tr>" + row(r).map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") || '<tr><td colspan="' + head.length + '" class="muted">No matching records.</td></tr>') + '</table></div><div class="pager"><button class="small" data-act="prev" ' + (st.offset ? "" : "disabled") + '>Previous</button><span class="muted">' + from + "–" + to + " of " + total + '</span><button class="small" data-act="next" ' + (to >= total ? "disabled" : "") + ">Next</button></div>";
+    return '<div class="scroll"><table><tr>' + head.map((h) => "<th>" + h + "</th>").join("") + "</tr>" + (rows.map((r) => "<tr>" + row(r).map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") || '<tr><td colspan="' + head.length + '" class="muted">No matching records.</td></tr>') + '</table></div><div class="pager"><button class="small" data-act="prev" ' + (st.offset ? "" : "disabled") + '>Previous</button><span class="muted">' + from + "â€“" + to + " of " + total + '</span><button class="small" data-act="next" ' + (to >= total ? "disabled" : "") + ">Next</button></div>";
   }
   function detail() {
     const d = st.detail; if (!d) return "";
     const p = d.profile, isS = d.kind === "student";
     const base = "<dl><dt>Email</dt><dd>" + esc(d.email) + "</dd><dt>Status</dt><dd><span class=\"pill " + d.status + '">' + d.status + "</span></dd><dt>Joined</dt><dd>" + date(d.createdAt) + "</dd><dt>Last sign-in</dt><dd>" + date(d.lastLoginAt) + "</dd><dt>Can sign in</dt><dd>" + (d.canLogin ? "Yes" : "No (placeholder account)") + "</dd>";
     const body = isS
-      ? "<dt>Studying</dt><dd>" + esc(p.study || "—") + "</dd><dt>Location</dt><dd>" + esc(p.location) + "</dd><dt>Skills</dt><dd>" + esc(p.skills.join(", ") || "—") + "</dd><dt>Free time slots</dt><dd>" + p.availability.length + " of 21</dd><dt>Saved jobs</dt><dd>" + d.savedJobs + "</dd></dl><h2>Applications (" + d.applications.length + ")</h2>" + (d.applications.map((a) => "<div>" + esc(a.jobTitle) + " at " + esc(a.employer) + ' <span class="pill ' + a.status + '">' + a.status + "</span> <span class=\"muted\">" + date(a.at) + "</span></div>").join("") || '<p class="muted">None.</p>')
-      : "<dt>Business name</dt><dd>" + esc(p.name) + "</dd><dt>Contact person</dt><dd>" + esc(d.name) + "</dd><dt>Business email</dt><dd>" + esc(p.contactEmail || "—") + "</dd><dt>Phone</dt><dd>" + esc(p.phone || "—") + "</dd><dt>Town</dt><dd>" + esc(p.town) + "</dd><dt>About</dt><dd>" + esc(p.description || "—") + "</dd></dl><h2>Listings (" + d.jobs.length + ")</h2>" + (d.jobs.map((j) => "<div>" + esc(j.title) + " · " + j.applicants + ' applicants <span class="pill ' + j.status + '">' + j.status + "</span></div>").join("") || '<p class="muted">None.</p>');
+      ? "<dt>Studying</dt><dd>" + esc(p.study || "â€”") + "</dd><dt>Location</dt><dd>" + esc(p.location) + "</dd><dt>Skills</dt><dd>" + esc(p.skills.join(", ") || "â€”") + "</dd><dt>Free time slots</dt><dd>" + p.availability.length + " of 21</dd><dt>Saved jobs</dt><dd>" + d.savedJobs + "</dd></dl><h2>Applications (" + d.applications.length + ")</h2>" + (d.applications.map((a) => "<div>" + esc(a.jobTitle) + " at " + esc(a.employer) + ' <span class="pill ' + a.status + '">' + a.status + "</span> <span class=\"muted\">" + date(a.at) + "</span></div>").join("") || '<p class="muted">None.</p>')
+      : "<dt>Business name</dt><dd>" + esc(p.name) + "</dd><dt>Contact person</dt><dd>" + esc(d.name) + "</dd><dt>Business email</dt><dd>" + esc(p.contactEmail || "â€”") + "</dd><dt>Phone</dt><dd>" + esc(p.phone || "â€”") + "</dd><dt>Town</dt><dd>" + esc(p.town) + "</dd><dt>About</dt><dd>" + esc(p.description || "â€”") + "</dd></dl><h2>Listings (" + d.jobs.length + ")</h2>" + (d.jobs.map((j) => "<div>" + esc(j.title) + " Â· " + j.applicants + ' applicants <span class="pill ' + j.status + '">' + j.status + "</span></div>").join("") || '<p class="muted">None.</p>');
     const next = d.status === "active" ? "disabled" : "active";
     return '<section class="card detail"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><h2>' + esc(d.name) + '</h2><div><button class="' + (next === "disabled" ? "danger" : "primary") + '" data-act="status" data-id="' + d.id + '" data-status="' + next + '">' + (next === "disabled" ? "Deactivate account" : "Activate account") + '</button> <button data-act="close">Close</button></div></div>' + base + body + "</section>";
   }
@@ -140,3 +140,4 @@
 </script>
 </body>
 </html>
+
