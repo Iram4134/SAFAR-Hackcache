@@ -51,8 +51,8 @@
 
   function showLogin(note, denied) {
     root.innerHTML = '<div class="card login"><h1>SAFAR Admin</h1>' + (denied
-      ? '<p>This area is for SAFAR administrators only. You are signed in with a different kind of account.</p><div><a class="btn" href="/">Back to SAFAR</a></div>'
-      : '<p class="muted">' + esc(note || "Sign in with your administrator account.") + '</p><form id="f" class="login" style="margin:0"><label>Email<input name="email" type="email" required autocomplete="username"></label><label>Password<input name="password" type="password" required autocomplete="current-password"></label><div class="err" id="e" role="alert"></div><button class="primary" type="submit">Sign in</button></form><a class="muted" href="/">Back to SAFAR</a>') + "</div>";
+      ? '<p>This area is for SAFAR administrators only. You are signed in with a different kind of account.</p><div><a class="btn" href="./">Back to SAFAR</a></div>'
+      : '<p class="muted">' + esc(note || "Sign in with your administrator account.") + '</p><form id="f" class="login" style="margin:0"><label>Email<input name="email" type="email" required autocomplete="username"></label><label>Password<input name="password" type="password" required autocomplete="current-password"></label><div class="err" id="e" role="alert"></div><button class="primary" type="submit">Sign in</button></form><a class="muted" href="./">Back to SAFAR</a>') + "</div>";
     const f = document.getElementById("f");
     if (f) f.addEventListener("submit", async (ev) => {
       ev.preventDefault(); const d = new FormData(f), b = f.querySelector("button"); b.disabled = true;
@@ -107,7 +107,7 @@
   function draw() {
     const T = [["students", "Students"], ["businesses", "Businesses"], ["jobs", "Jobs"], ["applications", "Applications"], ["audit", "Admin activity log"]];
     const filt = st.tab === "audit" ? "" : '<div class="filters">' + (st.tab === "applications" ? "" : '<input id="q" type="search" placeholder="Search ' + (st.tab === "jobs" ? "title or employer" : "name or email") + '" value="' + esc(st.q) + '">') + '<select id="status"><option value="">All statuses</option>' + (st.tab === "applications" ? ["Applied", "Shortlisted", "Interview", "Hired", "Rejected"] : st.tab === "jobs" ? ["open", "closed"] : ["active", "disabled"]).map((o) => '<option' + (st.status === o ? " selected" : "") + ">" + o + "</option>").join("") + "</select></div>";
-    root.innerHTML = '<header class="bar"><div><h1>SAFAR Admin</h1><p class="muted" style="margin:2px 0 0">Signed in as ' + esc(st.me.email) + '</p></div><div><a class="btn" href="/">Back to SAFAR</a> <button data-act="logout">Log out</button></div></header>' + tiles() +
+    root.innerHTML = '<header class="bar"><div><h1>SAFAR Admin</h1><p class="muted" style="margin:2px 0 0">Signed in as ' + esc(st.me.email) + '</p></div><div><a class="btn" href="./">Back to SAFAR</a> <button data-act="logout">Log out</button></div></header>' + tiles() +
       '<div class="tabs" role="group" aria-label="Sections">' + T.map((t) => '<button data-act="tab" data-tab="' + t[0] + '" aria-pressed="' + (st.tab === t[0]) + '">' + t[1] + "</button>").join("") + "</div>" +
       '<section class="card">' + filt + table() + "</section>" + detail();
     const q = document.getElementById("q");
@@ -140,4 +140,5 @@
 </script>
 </body>
 </html>
+
 
