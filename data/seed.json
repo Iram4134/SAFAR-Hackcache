@@ -1,0 +1,670 @@
+{
+ "employer": {
+  "name": "Valley Events & Tours",
+  "town": "Srinagar"
+ },
+ "jobs": [
+  {
+   "key": "j1",
+   "title": "Event Assistant",
+   "employer": "Valley Events & Tours",
+   "location": "Srinagar",
+   "type": "Gig",
+   "sector": "Events",
+   "payMin": 800,
+   "payMax": 1000,
+   "unit": "day",
+   "skills": [
+    "Event Support",
+    "Customer Service"
+   ],
+   "schedule": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sun-Morning",
+    "Sun-Afternoon"
+   ],
+   "description": "Help set up, run and pack down weddings, conferences and cultural evenings. You will greet guests, manage seating and support the lead coordinator.",
+   "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 1,
+   "ownedByDemoEmployer": true
+  },
+  {
+   "key": "j2",
+   "title": "Tourist Portrait Photographer",
+   "employer": "Valley Events & Tours",
+   "location": "Srinagar",
+   "type": "Gig",
+   "sector": "Tourism",
+   "payMin": 1200,
+   "payMax": 1800,
+   "unit": "day",
+   "skills": [
+    "Photography",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sun-Morning",
+    "Sun-Afternoon"
+   ],
+   "description": "Shoot portraits and group photos of visitors near the Dal Lake ghats and nearby gardens. Bring your own camera or phone. Editing and delivery are handled by the team.",
+   "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 2,
+   "ownedByDemoEmployer": true
+  },
+  {
+   "key": "j3",
+   "title": "Front-Desk Trainee",
+   "employer": "Pine Ridge Resort",
+   "location": "Gulmarg",
+   "type": "Seasonal",
+   "sector": "Hospitality",
+   "payMin": 12000,
+   "payMax": 15000,
+   "unit": "month",
+   "skills": [
+    "Customer Service",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Fri-Morning",
+    "Fri-Evening",
+    "Sat-Morning",
+    "Sat-Evening",
+    "Sun-Morning",
+    "Sun-Evening"
+   ],
+   "description": "Check guests in and out, answer questions about activities and handle simple bookings through the winter season. Training on the booking software is provided.",
+   "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 3,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j4",
+   "title": "Trek Guide Assistant",
+   "employer": "Lidder Trails",
+   "location": "Pahalgam",
+   "type": "Seasonal",
+   "sector": "Tourism",
+   "payMin": 1000,
+   "payMax": 1500,
+   "unit": "day",
+   "skills": [
+    "Tour Guiding",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Sat-Morning",
+    "Sun-Morning"
+   ],
+   "description": "Support lead guides on day treks. Carry the first-aid kit, count groups at checkpoints and share local stories with visitors.",
+   "image": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 4,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j5",
+   "title": "Barista and Cashier",
+   "employer": "Jhelum Roast Cafe",
+   "location": "Srinagar",
+   "type": "Part-time",
+   "sector": "Food & Beverage",
+   "payMin": 9000,
+   "payMax": 11000,
+   "unit": "month",
+   "skills": [
+    "Customer Service",
+    "Cashiering"
+   ],
+   "schedule": [
+    "Mon-Evening",
+    "Tue-Evening",
+    "Wed-Evening",
+    "Thu-Evening",
+    "Fri-Evening"
+   ],
+   "description": "Prepare coffee, take orders and run the till on weekday evenings after classes. Barista training in your first week.",
+   "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 2,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j6",
+   "title": "Social Media Assistant",
+   "employer": "Kani Collective",
+   "location": "Remote",
+   "type": "Part-time",
+   "sector": "Handicrafts",
+   "payMin": 6000,
+   "payMax": 8000,
+   "unit": "month",
+   "skills": [
+    "Social Media",
+    "Graphic Design",
+    "Photography"
+   ],
+   "schedule": [
+    "Mon-Afternoon",
+    "Wed-Afternoon",
+    "Fri-Afternoon"
+   ],
+   "description": "Plan and post weekly content for a shawl and papier-mâché studio. Photograph new pieces and reply to customer messages.",
+   "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 5,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j7",
+   "title": "Maths and Science Tutor",
+   "employer": "Bright Steps Coaching",
+   "location": "Jammu",
+   "type": "Part-time",
+   "sector": "Education",
+   "payMin": 250,
+   "payMax": 400,
+   "unit": "hour",
+   "skills": [
+    "Tutoring",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Mon-Evening",
+    "Tue-Evening",
+    "Wed-Evening",
+    "Thu-Evening",
+    "Fri-Evening"
+   ],
+   "description": "Teach small batches of Class 8 to 10 students. Lesson plans are provided. You bring patience and clear explanations.",
+   "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 6,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j8",
+   "title": "Yatra Helpdesk Assistant",
+   "employer": "Hillside Pilgrim Services",
+   "location": "Katra",
+   "type": "Seasonal",
+   "sector": "Tourism",
+   "payMin": 700,
+   "payMax": 900,
+   "unit": "day",
+   "skills": [
+    "Customer Service",
+    "Event Support"
+   ],
+   "schedule": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sat-Evening",
+    "Sun-Morning",
+    "Sun-Afternoon",
+    "Sun-Evening"
+   ],
+   "description": "Staff the information desk at the base camp. Guide pilgrims to registration, answer questions and keep queues moving.",
+   "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 7,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j9",
+   "title": "Delivery Partner (Bike)",
+   "employer": "Tawi Fresh Mart",
+   "location": "Jammu",
+   "type": "Part-time",
+   "sector": "Retail",
+   "payMin": 500,
+   "payMax": 800,
+   "unit": "day",
+   "skills": [
+    "Delivery",
+    "Driving"
+   ],
+   "schedule": [
+    "Mon-Evening",
+    "Tue-Evening",
+    "Wed-Evening",
+    "Thu-Evening",
+    "Fri-Evening",
+    "Sat-Evening",
+    "Sun-Evening"
+   ],
+   "description": "Deliver grocery orders within 5 km on your own two-wheeler. A fuel allowance is included.",
+   "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 3,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j10",
+   "title": "Data Entry Assistant",
+   "employer": "Sopore Fruit Growers Society",
+   "location": "Baramulla",
+   "type": "Part-time",
+   "sector": "Agriculture",
+   "payMin": 7000,
+   "payMax": 9000,
+   "unit": "month",
+   "skills": [
+    "Data Entry"
+   ],
+   "schedule": [
+    "Mon-Morning",
+    "Mon-Afternoon",
+    "Tue-Morning",
+    "Tue-Afternoon",
+    "Wed-Morning",
+    "Wed-Afternoon"
+   ],
+   "description": "Enter grading and dispatch records for the apple season into spreadsheets. Basic typing and Excel are enough.",
+   "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 8,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j11",
+   "title": "Wazwan Catering Helper",
+   "employer": "Shahi Dastarkhwan Caterers",
+   "location": "Anantnag",
+   "type": "Gig",
+   "sector": "Events",
+   "payMin": 900,
+   "payMax": 1200,
+   "unit": "day",
+   "skills": [
+    "Cooking",
+    "Event Support"
+   ],
+   "schedule": [
+    "Sat-Evening",
+    "Sun-Evening"
+   ],
+   "description": "Assist the cooking team with prep, serving and clean-up at weddings and community feasts.",
+   "image": "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 4,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j12",
+   "title": "Handicraft Sales Associate",
+   "employer": "Shaal Gali Emporium",
+   "location": "Srinagar",
+   "type": "Part-time",
+   "sector": "Handicrafts",
+   "payMin": 8000,
+   "payMax": 10000,
+   "unit": "month",
+   "skills": [
+    "Handicrafts",
+    "Retail Sales",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Sat-Afternoon",
+    "Sun-Afternoon",
+    "Mon-Evening",
+    "Wed-Evening",
+    "Fri-Evening"
+   ],
+   "description": "Welcome visitors to the showroom, explain materials and craft traditions, and handle billing.",
+   "image": "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 5,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j13",
+   "title": "Travel Video Editor",
+   "employer": "Wanderlust Reels",
+   "location": "Remote",
+   "type": "Gig",
+   "sector": "Media",
+   "payMin": 2000,
+   "payMax": 4000,
+   "unit": "project",
+   "skills": [
+    "Video Editing",
+    "Graphic Design"
+   ],
+   "schedule": [],
+   "description": "Cut short travel reels from raw footage with music and captions. Typical turnaround is three days per video. Hours are flexible.",
+   "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 1,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j14",
+   "title": "Spring Garden Visitor Assistant",
+   "employer": "Zabarwan Garden Events",
+   "location": "Srinagar",
+   "type": "Seasonal",
+   "sector": "Tourism",
+   "payMin": 700,
+   "payMax": 900,
+   "unit": "day",
+   "skills": [
+    "Customer Service",
+    "Spoken English",
+    "Event Support"
+   ],
+   "schedule": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sun-Morning",
+    "Sun-Afternoon"
+   ],
+   "description": "Guide visitors, manage entry queues and keep walkways clear through the spring flower season. Applications open early so training can start on time.",
+   "image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=82",
+   "daysAgo": 9,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j15",
+   "title": "Restaurant Waiter",
+   "employer": "Dal View Restaurant",
+   "location": "Srinagar",
+   "type": "Part-time",
+   "sector": "Hospitality",
+   "payMin": 9000,
+   "payMax": 12000,
+   "unit": "month",
+   "skills": [
+    "Customer Service",
+    "Spoken English"
+   ],
+   "schedule": [
+    "Fri-Afternoon",
+    "Fri-Evening",
+    "Sat-Afternoon",
+    "Sat-Evening",
+    "Sun-Afternoon",
+    "Sun-Evening"
+   ],
+   "description": "Welcome guests, take orders, serve food and keep tables clean during busy lunch and dinner hours. Tips are shared among the team and a staff meal is provided.",
+   "image": null,
+   "daysAgo": 1,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j16",
+   "title": "Shopkeeper Helper",
+   "employer": "Lal Chowk General Traders",
+   "location": "Srinagar",
+   "type": "Part-time",
+   "sector": "Retail",
+   "payMin": 7000,
+   "payMax": 9000,
+   "unit": "month",
+   "skills": [
+    "Retail Sales",
+    "Cashiering",
+    "Customer Service"
+   ],
+   "schedule": [
+    "Mon-Morning",
+    "Mon-Afternoon",
+    "Tue-Morning",
+    "Tue-Afternoon",
+    "Wed-Morning",
+    "Wed-Afternoon",
+    "Thu-Morning",
+    "Thu-Afternoon",
+    "Fri-Morning",
+    "Fri-Afternoon",
+    "Sat-Morning",
+    "Sat-Afternoon"
+   ],
+   "description": "Help the shopkeeper arrange stock, assist customers, handle billing and keep the counter tidy. A good chance to learn how a small business runs.",
+   "image": null,
+   "daysAgo": 2,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j17",
+   "title": "Medical Store Assistant",
+   "employer": "Wellcare Pharmacy",
+   "location": "Jammu",
+   "type": "Part-time",
+   "sector": "Retail",
+   "payMin": 8000,
+   "payMax": 11000,
+   "unit": "month",
+   "skills": [
+    "Customer Service",
+    "Data Entry",
+    "Cashiering"
+   ],
+   "schedule": [
+    "Mon-Afternoon",
+    "Mon-Evening",
+    "Tue-Afternoon",
+    "Tue-Evening",
+    "Wed-Afternoon",
+    "Wed-Evening",
+    "Thu-Afternoon",
+    "Thu-Evening",
+    "Fri-Afternoon",
+    "Fri-Evening"
+   ],
+   "description": "Support the pharmacist by arranging medicines, updating stock records, billing and helping customers find products. Medicines are dispensed only by the pharmacist. Training provided.",
+   "image": null,
+   "daysAgo": 1,
+   "ownedByDemoEmployer": false
+  },
+  {
+   "key": "j18",
+   "title": "General Store Delivery / Helper",
+   "employer": "Rahim General Store",
+   "location": "Budgam",
+   "type": "Part-time",
+   "sector": "Retail",
+   "payMin": 400,
+   "payMax": 700,
+   "unit": "day",
+   "skills": [
+    "Delivery",
+    "Driving",
+    "Customer Service"
+   ],
+   "schedule": [
+    "Mon-Morning",
+    "Mon-Evening",
+    "Tue-Morning",
+    "Tue-Evening",
+    "Wed-Morning",
+    "Wed-Evening",
+    "Thu-Morning",
+    "Thu-Evening",
+    "Fri-Morning",
+    "Fri-Evening",
+    "Sat-Morning",
+    "Sat-Evening",
+    "Sun-Morning",
+    "Sun-Evening"
+   ],
+   "description": "Pack grocery orders and deliver them to nearby homes on a bike or cycle. When free, help stack shelves and assist customers in the store. Fuel allowance included.",
+   "image": null,
+   "daysAgo": 0,
+   "ownedByDemoEmployer": false
+  }
+ ],
+ "applicants": [
+  {
+   "key": "a1",
+   "jobKey": "j1",
+   "name": "Sana Mir",
+   "location": "Srinagar",
+   "skills": [
+    "Event Support",
+    "Customer Service",
+    "Spoken English"
+   ],
+   "availability": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sun-Morning",
+    "Sun-Afternoon"
+   ],
+   "note": "I have helped run college fests and can work every weekend.",
+   "status": "Shortlisted",
+   "daysAgo": 2
+  },
+  {
+   "key": "a2",
+   "jobKey": "j1",
+   "name": "Zubair Ahmad",
+   "location": "Budgam",
+   "skills": [
+    "Event Support",
+    "Driving"
+   ],
+   "availability": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sat-Evening"
+   ],
+   "note": "Available on Saturdays. I can bring my own transport.",
+   "status": "Applied",
+   "daysAgo": 1
+  },
+  {
+   "key": "a3",
+   "jobKey": "j1",
+   "name": "Mehak Sharma",
+   "location": "Jammu",
+   "skills": [
+    "Customer Service",
+    "Spoken English",
+    "Event Support"
+   ],
+   "availability": [
+    "Sun-Morning",
+    "Sun-Afternoon"
+   ],
+   "note": "I am visiting Srinagar for two weekends this month.",
+   "status": "Applied",
+   "daysAgo": 1
+  },
+  {
+   "key": "a4",
+   "jobKey": "j2",
+   "name": "Tariq Bhat",
+   "location": "Srinagar",
+   "skills": [
+    "Photography",
+    "Video Editing",
+    "Spoken English"
+   ],
+   "availability": [
+    "Sat-Morning",
+    "Sat-Afternoon",
+    "Sat-Evening",
+    "Sun-Morning",
+    "Sun-Afternoon",
+    "Sun-Evening"
+   ],
+   "note": "I shoot street and portrait work and can share my gallery.",
+   "status": "Applied",
+   "daysAgo": 1
+  },
+  {
+   "key": "a5",
+   "jobKey": "j2",
+   "name": "Insha Rather",
+   "location": "Srinagar",
+   "skills": [
+    "Photography",
+    "Social Media",
+    "Spoken English"
+   ],
+   "availability": [
+    "Sat-Afternoon"
+   ],
+   "note": "I post travel photos daily and enjoy talking to visitors.",
+   "status": "Interview",
+   "daysAgo": 3
+  }
+ ],
+ "threads": [
+  {
+   "jobKey": "j1",
+   "who": "Sana Mir",
+   "unread": {
+    "student": 0,
+    "employer": 0
+   },
+   "msgs": [
+    {
+     "from": "s",
+     "text": "Hello! I can work every weekend. Do I need to bring anything?",
+     "daysAgo": 2
+    },
+    {
+     "from": "e",
+     "text": "Hi Sana, thanks for applying. Please carry your college ID and wear dark clothes.",
+     "daysAgo": 1.5
+    }
+   ]
+  },
+  {
+   "jobKey": "j2",
+   "who": "Insha Rather",
+   "unread": {
+    "student": 0,
+    "employer": 1
+   },
+   "msgs": [
+    {
+     "from": "e",
+     "text": "Hi Insha, your gallery looks great. Can you come for a short interview on Saturday at 11am?",
+     "daysAgo": 1
+    },
+    {
+     "from": "s",
+     "text": "Yes, Saturday 11am works for me. Thank you!",
+     "daysAgo": 0.5
+    }
+   ]
+  },
+  {
+   "jobKey": "j2",
+   "who": "me",
+   "unread": {
+    "student": 1,
+    "employer": 0
+   },
+   "msgs": [
+    {
+     "from": "s",
+     "text": "Hi! Do I need my own camera for this job?",
+     "daysAgo": 0.6
+    },
+    {
+     "from": "e",
+     "text": "A phone camera is fine if it takes sharp portraits. Could you share one or two samples?",
+     "daysAgo": 0.4
+    }
+   ]
+  }
+ ],
+ "demoStudent": {
+  "name": "Demo Student",
+  "study": "MCA, 2nd year",
+  "location": "Srinagar",
+  "skills": [
+   "Photography",
+   "Event Support",
+   "Spoken English"
+  ],
+  "availability": [
+   "Sat-Morning",
+   "Sat-Afternoon",
+   "Sun-Morning",
+   "Sun-Afternoon",
+   "Fri-Evening"
+  ]
+ },
+ "savedKeys": [
+  "j14"
+ ]
+}

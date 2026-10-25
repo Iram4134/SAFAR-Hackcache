@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>SAFAR Admin</title>
+<style>
+  :root { color-scheme: dark; --bg:#080910; --surface:rgba(19,20,35,.92); --surface-2:rgba(31,30,51,.9); --ink:#f7f5ff; --ink-2:#b5b4cf; --line:rgba(190,183,255,.2); --brand:#a78bfa; --brand-ink:#100d20; --good:#6ee7b7; --bad:#ff7b91; --warn:#ffd166; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:radial-gradient(ellipse at 12% 5%,rgba(112,70,220,.22),transparent 32%),radial-gradient(ellipse at 92% 18%,rgba(65,143,220,.17),transparent 30%),var(--bg); min-height:100vh; padding: env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0); }
+  .wrap { max-width:1180px; margin:0 auto; padding:16px; }
+  header.bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:space-between; padding:12px 0 18px; }
+  h1 { font-size:22px; margin:0; } h2 { font-size:16px; margin:0 0 10px; }
+  .muted { color:var(--ink-2); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:16px; }
+  .tile b { display:block; font-size:28px; } .tile span { color:var(--ink-2); font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
+  .tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  button, .btn { font:inherit; cursor:pointer; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); padding:8px 12px; border-radius:10px; }
+  button.primary { background:var(--brand); color:var(--brand-ink); border-color:transparent; font-weight:600; }
+  button.danger { color:var(--bad); } button.small { padding:4px 8px; font-size:12px; }
+  .tabs button[aria-pressed="true"] { background:var(--brand); color:var(--brand-ink); border-color:transparent; }
+  input, select { font:inherit; color:var(--ink); background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; } .filters input { flex:1; min-width:180px; }
+  .scroll { overflow-x:auto; } table { width:100%; border-collapse:collapse; min-width:640px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; } th { color:var(--ink-2); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); }
+  .pill.active,.pill.open,.pill.Hired { color:var(--good); } .pill.disabled,.pill.closed,.pill.Rejected { color:var(--bad); }
+  .err { color:var(--bad); min-height:1.2em; } .err:empty { display:none; }
+  .login { max-width:420px; margin:8vh auto; display:grid; gap:12px; } .login label { display:grid; gap:4px; }
+  dl { display:grid; grid-template-columns:max-content 1fr; gap:6px 14px; margin:0 0 12px; } dt { color:var(--ink-2); } dd { margin:0; overflow-wrap:anywhere; }
+  .detail { margin-top:14px; } .pager { display:flex; gap:8px; align-items:center; margin-top:10px; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap" id="root"><p class="muted">Loading…</p></div>
+<script src="/safar-api.js"></script>
+<script>
+(function () {
+  "use strict";
+  const API = window.SafarAPI, A = API.admin, root = document.getElementById("root");
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const date = (t) => (t ? new Date(t).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "never");
+  const msg = (e) => (e.details && Object.values(e.details).join(" ")) || e.message;
+  const PAGE = 15;
+  const st = { tab: "students", q: "", status: "", offset: 0, detail: null, stats: null, list: null, me: null };
+
+  API.onUnauthorized = () => { st.me = null; showLogin("Your session has ended. Please sign in again."); };
+
+  function showLogin(note, denied) {
+    root.innerHTML = '<div class="card login"><h1>SAFAR Admin</h1>' + (denied
+      ? '<p>This area is for SAFAR administrators only. You are signed in with a different kind of account.</p><div><a class="btn" href="/">Back to SAFAR</a></div>'
+      : '<p class="muted">' + esc(note || "Sign in with your administrator account.") + '</p><form id="f" class="login" style="margin:0"><label>Email<input name="email" type="email" required autocomplete="username"></label><label>Password<input name="password" type="password" required autocomplete="current-password"></label><div class="err" id="e" role="alert"></div><button class="primary" type="submit">Sign in</button></form><a class="muted" href="/">Back to SAFAR</a>') + "</div>";
+    const f = document.getElementById("f");
+    if (f) f.addEventListener("submit", async (ev) => {
+      ev.preventDefault(); const d = new FormData(f), b = f.querySelector("button"); b.disabled = true;
+      try { st.me = await API.login(String(d.get("email")).trim(), String(d.get("password")), "admin"); await start(); }
+      catch (e) { document.getElementById("e").textContent = msg(e); b.disabled = false; }
+    });
+  }
+
+  async function start() {
+    if (!st.me) return showLogin();
+    if (st.me.role !== "admin") return showLogin("", true);
+    await Promise.all([loadStats(), loadList()]);
+    draw();
+  }
+  async function loadStats() { st.stats = await A.stats(); }
+  async function loadList() {
+    const f = { q: st.q, status: st.status, limit: PAGE, offset: st.offset };
+    st.list = st.tab === "students" ? await A.students(f) : st.tab === "businesses" ? await A.businesses(f)
+      : st.tab === "jobs" ? await A.jobs(f) : st.tab === "applications" ? await A.applications({ status: st.status, limit: PAGE, offset: st.offset })
+      : await A.audit({ limit: 50 });
+  }
+  async function refresh(keepDetail) { try { await Promise.all([loadStats(), loadList()]); } catch (e) { return toast(msg(e)); } if (!keepDetail) st.detail = null; draw(); }
+  function toast(m) { alert(m); }
+
+  function tiles() {
+    const s = st.stats, t = (n, l) => '<div class="card tile"><b>' + n + "</b><span>" + l + "</span></div>";
+    return '<div class="tiles">' + t(s.students, "Students") + t(s.businesses, "Businesses") + t(s.jobs, "Job listings (" + s.openJobs + " open)") + t(s.applications, "Applications") + t(s.disabledAccounts, "Deactivated accounts") + t(s.newUsersLast7Days, "New users, 7 days") + "</div>";
+  }
+  function table() {
+    const L = st.list;
+    if (st.tab === "audit")
+      return '<div class="scroll"><table><tr><th>When</th><th>Admin</th><th>Action</th><th>Target</th><th>Detail</th></tr>' + (L.entries.map((e) => "<tr><td>" + date(e.at) + "</td><td>" + esc(e.admin) + "</td><td>" + esc(e.action) + "</td><td>" + esc(e.targetType) + " #" + esc(e.targetId) + "</td><td>" + esc(e.detail) + "</td></tr>").join("") || '<tr><td colspan="5" class="muted">Nothing logged yet.</td></tr>') + "</table></div>";
+    const rows = (L.students || L.businesses || L.jobs || L.applications || []);
+    let head, row;
+    if (st.tab === "students") { head = ["Name", "Email", "Location", "Applications", "Status", "Joined", ""]; row = (u) => [esc(u.name), esc(u.email) + (u.canLogin ? "" : ' <span class="muted">(placeholder)</span>'), esc(u.location), u.applications, '<span class="pill ' + u.status + '">' + u.status + "</span>", date(u.createdAt), '<button class="small" data-act="view" data-id="' + u.id + '">Details</button>']; }
+    else if (st.tab === "businesses") { head = ["Business", "Contact", "Email", "Town", "Jobs", "Status", "Joined", ""]; row = (u) => [esc(u.companyName), esc(u.name), esc(u.email), esc(u.town), u.jobs, '<span class="pill ' + u.status + '">' + u.status + "</span>", date(u.createdAt), '<button class="small" data-act="view" data-id="' + u.id + '">Details</button>']; }
+    else if (st.tab === "jobs") { head = ["Title", "Employer", "Where", "Applicants", "Status", "Posted", ""]; row = (j) => [esc(j.title), esc(j.employer), esc(j.location), j.applicants, '<span class="pill ' + j.status + '">' + j.status + "</span>", date(j.postedAt), '<button class="small" data-act="job-toggle" data-id="' + j.id + '" data-status="' + (j.status === "open" ? "closed" : "open") + '">' + (j.status === "open" ? "Close" : "Reopen") + '</button> <button class="small danger" data-act="job-delete" data-id="' + j.id + '" data-title="' + esc(j.title) + '">Delete</button>']; }
+    else { head = ["Student", "Job", "Employer", "Status", "Applied", "Updated"]; row = (a) => [esc(a.studentName), esc(a.jobTitle), esc(a.employer), '<span class="pill ' + a.status + '">' + a.status + "</span>", date(a.at), date(a.updatedAt)]; }
+    const total = L.total, from = total ? st.offset + 1 : 0, to = Math.min(st.offset + PAGE, total);
+    return '<div class="scroll"><table><tr>' + head.map((h) => "<th>" + h + "</th>").join("") + "</tr>" + (rows.map((r) => "<tr>" + row(r).map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") || '<tr><td colspan="' + head.length + '" class="muted">No matching records.</td></tr>') + '</table></div><div class="pager"><button class="small" data-act="prev" ' + (st.offset ? "" : "disabled") + '>Previous</button><span class="muted">' + from + "–" + to + " of " + total + '</span><button class="small" data-act="next" ' + (to >= total ? "disabled" : "") + ">Next</button></div>";
+  }
+  function detail() {
+    const d = st.detail; if (!d) return "";
+    const p = d.profile, isS = d.kind === "student";
+    const base = "<dl><dt>Email</dt><dd>" + esc(d.email) + "</dd><dt>Status</dt><dd><span class=\"pill " + d.status + '">' + d.status + "</span></dd><dt>Joined</dt><dd>" + date(d.createdAt) + "</dd><dt>Last sign-in</dt><dd>" + date(d.lastLoginAt) + "</dd><dt>Can sign in</dt><dd>" + (d.canLogin ? "Yes" : "No (placeholder account)") + "</dd>";
+    const body = isS
+      ? "<dt>Studying</dt><dd>" + esc(p.study || "—") + "</dd><dt>Location</dt><dd>" + esc(p.location) + "</dd><dt>Skills</dt><dd>" + esc(p.skills.join(", ") || "—") + "</dd><dt>Free time slots</dt><dd>" + p.availability.length + " of 21</dd><dt>Saved jobs</dt><dd>" + d.savedJobs + "</dd></dl><h2>Applications (" + d.applications.length + ")</h2>" + (d.applications.map((a) => "<div>" + esc(a.jobTitle) + " at " + esc(a.employer) + ' <span class="pill ' + a.status + '">' + a.status + "</span> <span class=\"muted\">" + date(a.at) + "</span></div>").join("") || '<p class="muted">None.</p>')
+      : "<dt>Business name</dt><dd>" + esc(p.name) + "</dd><dt>Contact person</dt><dd>" + esc(d.name) + "</dd><dt>Business email</dt><dd>" + esc(p.contactEmail || "—") + "</dd><dt>Phone</dt><dd>" + esc(p.phone || "—") + "</dd><dt>Town</dt><dd>" + esc(p.town) + "</dd><dt>About</dt><dd>" + esc(p.description || "—") + "</dd></dl><h2>Listings (" + d.jobs.length + ")</h2>" + (d.jobs.map((j) => "<div>" + esc(j.title) + " · " + j.applicants + ' applicants <span class="pill ' + j.status + '">' + j.status + "</span></div>").join("") || '<p class="muted">None.</p>');
+    const next = d.status === "active" ? "disabled" : "active";
+    return '<section class="card detail"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><h2>' + esc(d.name) + '</h2><div><button class="' + (next === "disabled" ? "danger" : "primary") + '" data-act="status" data-id="' + d.id + '" data-status="' + next + '">' + (next === "disabled" ? "Deactivate account" : "Activate account") + '</button> <button data-act="close">Close</button></div></div>' + base + body + "</section>";
+  }
+  function draw() {
+    const T = [["students", "Students"], ["businesses", "Businesses"], ["jobs", "Jobs"], ["applications", "Applications"], ["audit", "Admin activity log"]];
+    const filt = st.tab === "audit" ? "" : '<div class="filters">' + (st.tab === "applications" ? "" : '<input id="q" type="search" placeholder="Search ' + (st.tab === "jobs" ? "title or employer" : "name or email") + '" value="' + esc(st.q) + '">') + '<select id="status"><option value="">All statuses</option>' + (st.tab === "applications" ? ["Applied", "Shortlisted", "Interview", "Hired", "Rejected"] : st.tab === "jobs" ? ["open", "closed"] : ["active", "disabled"]).map((o) => '<option' + (st.status === o ? " selected" : "") + ">" + o + "</option>").join("") + "</select></div>";
+    root.innerHTML = '<header class="bar"><div><h1>SAFAR Admin</h1><p class="muted" style="margin:2px 0 0">Signed in as ' + esc(st.me.email) + '</p></div><div><a class="btn" href="/">Back to SAFAR</a> <button data-act="logout">Log out</button></div></header>' + tiles() +
+      '<div class="tabs" role="group" aria-label="Sections">' + T.map((t) => '<button data-act="tab" data-tab="' + t[0] + '" aria-pressed="' + (st.tab === t[0]) + '">' + t[1] + "</button>").join("") + "</div>" +
+      '<section class="card">' + filt + table() + "</section>" + detail();
+    const q = document.getElementById("q");
+    if (q) { let tm; q.addEventListener("input", () => { clearTimeout(tm); tm = setTimeout(async () => { st.q = q.value; st.offset = 0; try { await loadList(); } catch (e) { return toast(msg(e)); } const pos = q.selectionStart; draw(); const n = document.getElementById("q"); n.focus(); n.setSelectionRange(pos, pos); }, 300); }); }
+    const sel = document.getElementById("status");
+    if (sel) sel.addEventListener("change", async () => { st.status = sel.value; st.offset = 0; try { await loadList(); } catch (e) { return toast(msg(e)); } draw(); });
+  }
+  root.addEventListener("click", async (ev) => {
+    const b = ev.target.closest("[data-act]"); if (!b) return; const act = b.dataset.act, id = Number(b.dataset.id);
+    try {
+      if (act === "logout") { await API.logout(); st.me = null; return showLogin("You have been signed out."); }
+      if (act === "tab") { st.tab = b.dataset.tab; st.q = ""; st.status = ""; st.offset = 0; st.detail = null; await loadList(); return draw(); }
+      if (act === "prev" || act === "next") { st.offset = Math.max(0, st.offset + (act === "next" ? PAGE : -PAGE)); await loadList(); return draw(); }
+      if (act === "view") { const kind = st.tab === "students" ? "student" : "business"; st.detail = Object.assign(await (kind === "student" ? A.student(id) : A.business(id)), { kind }); draw(); return document.querySelector(".detail").scrollIntoView({ behavior: "smooth" }); }
+      if (act === "close") { st.detail = null; return draw(); }
+      if (act === "status") {
+        if (b.dataset.status === "disabled" && !confirm("Deactivate this account? They will be signed out and unable to log in.")) return;
+        await A.setStatus(id, b.dataset.status); const kind = st.detail.kind; st.detail = Object.assign(await (kind === "student" ? A.student(id) : A.business(id)), { kind }); return refresh(true);
+      }
+      if (act === "job-toggle") { await A.setJobStatus(id, b.dataset.status); return refresh(); }
+      if (act === "job-delete") { if (!confirm('Delete the listing "' + b.dataset.title + '" and all its applications and messages? This cannot be undone.')) return; await A.deleteJob(id); return refresh(); }
+    } catch (e) { if (e.status !== 401) toast(msg(e)); }
+  });
+
+  (async function boot() {
+    if (API.isSignedIn()) { try { st.me = await API.me(); } catch (e) { st.me = null; } }
+    try { await start(); } catch (e) { if (e.status === 403) showLogin("", true); else showLogin(msg(e)); }
+  })();
+})();
+</script>
+</body>
+</html>
